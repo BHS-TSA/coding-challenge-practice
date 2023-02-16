@@ -26,5 +26,7 @@ class PlayState extends FlxState
 			FlxG.switchState(new Challenge1());
 		else if (FlxG.keys.justPressed.TWO)
 			FlxG.switchState(new Challenge2());
+		else if (FlxG.keys.justPressed.THREE)
+			FlxG.switchState(new Challenge3());
 	}
 }
