@@ -1,53 +1,21 @@
 package;
 
-import flixel.FlxG;
-import flixel.FlxState;
-import flixel.addons.ui.FlxUIInputText;
-import flixel.text.FlxText;
-
 using StringTools;
 
 /**
 	Write a program which takes an integer input and determines if it is a prime number.
 	Example, “97” results in “is a prime number.”
  */
-class Challenge2 extends FlxState
+class Challenge2 extends ChallengeBase
 {
-	var input:FlxUIInputText;
-	var output:FlxText;
-	var title:FlxText;
-
 	override public function create()
 	{
-		input = new FlxUIInputText(0, 0, 1000, 50);
-		input.screenCenter();
-
-		title = new FlxText(0, input.y - input.height, FlxG.width, "Press ENTER To Test Number", 50);
-		title.y -= 10;
-		title.alignment = CENTER;
-
-		output = new FlxText(0, input.y + input.height, FlxG.width, "", 50);
-		output.y += 10;
-		output.alignment = CENTER;
-
 		super.create();
 
-		add(input);
-		add(title);
-		add(output);
+		title.text = 'Press ENTER To Test Number';
 	}
 
-	override public function update(elapsed:Float)
-	{
-		super.update(elapsed);
-
-		if (FlxG.keys.justPressed.ESCAPE)
-			FlxG.switchState(new PlayState());
-		else if (FlxG.keys.justPressed.ENTER)
-			doTheThing();
-	}
-
-	function doTheThing()
+	override function doTheThing()
 	{
 		var thingy = Std.parseInt(input.text.trim());
 
