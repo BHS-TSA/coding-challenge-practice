@@ -10,8 +10,7 @@ class PlayState extends FlxState
 
 	override public function create()
 	{
-		listText = new FlxText(0, 0, 0,
-			'Press 1 For Challenge 1\nPress 2 For Challenge 2\nPress 3 For Challenge 3\nPress 4 For Challenge 4\nPress 5 For Challenge 5', 40);
+		listText = new FlxText(0, 0, 0, 'Press 1 For Challenge 1\nPress 2 For Challenge 2\nPress 3 For Challenge 3\nPress 4 For Challenge 4', 40);
 		listText.alignment = CENTER;
 		listText.screenCenter();
 		add(listText);
