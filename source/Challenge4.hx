@@ -66,7 +66,6 @@ class Challenge4 extends FlxState
 		var strArray:Array<String> = inTime.replace(' ', ':').split(':');
 		if (strArray.length != 3)
 			strArray.push('AM');
-		// trace(strArray);
 
 		minutes += Std.parseInt(strArray[0]) * 60;
 		minutes += Std.parseInt(strArray[1]);
@@ -76,7 +75,6 @@ class Challenge4 extends FlxState
 		if (strArray[2].contains('AM') && minutes >= 720)
 			minutes -= 720;
 
-		// trace(minutes);
 		return minutes;
 	}
 
@@ -86,12 +84,10 @@ class Challenge4 extends FlxState
 		var strArray:Array<String> = inTime.split(':');
 		if (strArray[0].startsWith('-'))
 			strArray[1] = '-' + strArray[1];
-		// trace(strArray);
 
 		minutes += Std.parseInt(strArray[0]) * 60;
 		minutes += Std.parseInt(strArray[1]);
 
-		// trace(minutes);
 		return minutes;
 	}
 
@@ -101,19 +97,37 @@ class Challenge4 extends FlxState
 
 		var raw = og + diff;
 
-		if (raw < 0)
-			raw += 1440;
-		else if (raw > 0)
-			raw -= 1440;
-
-		trace(raw);
+		while (raw > 1440 || raw < 0)
+		{
+			if (raw < 0)
+				raw += 1440;
+			else if (raw > 1440)
+				raw -= 1440;
+		}
 
 		var hour:Int;
 		var min:Int;
+		var suffix:String = 'AM';
 
 		hour = Std.int(raw / 60);
-		trace(hour);
+		min = raw - (60 * hour);
 
+		if (hour == 0)
+			hour = 12;
+		else if (hour >= 12)
+		{
+			suffix = 'PM';
+			if (hour > 12)
+				hour -= 12;
+		}
+
+		time = hour + ':';
+		if (min > 9)
+			time += min;
+		else
+			time += '0$min';
+		time += ' $suffix';
+		trace(time);
 		return time;
 	}
 }
